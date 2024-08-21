@@ -1,6 +1,6 @@
 Item (Id (PK), name, size, color, price, brand, stockQuantity)
 
-Category (Id (PK), name, desciption)
+Category (Id (PK), name, description)
 
 Customer (Id (PK), firstName, lastName, email, phoneNumber, address)
 
