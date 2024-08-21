@@ -1,0 +1,13 @@
+Item (Id (PK), name, size, color, price, brand, stockQuantity)
+
+Category (Id (PK), name, desciption)
+
+Customer (Id (PK), firstName, lastName, email, phoneNumber, address)
+
+Order (Id (PK), date, customer_id (FK))
+
+OrderItem (Id (PK), quantity, order_id (FK), item_id (FK))
+
+ItemCategory (Id (PK), item_id (FK), category_id (FK))
+
+
