@@ -42,7 +42,7 @@ create table OrderItem(
     foreign key (item_id) references Item(id)
 );
 
-create tabel ItemCategory(
+create table ItemCategory(
     id int not null auto_increment primary key,
     item_id int not null,
     category_id int not null,
