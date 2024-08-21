@@ -4,7 +4,7 @@ Category (Id (PK), name, description)
 
 Customer (Id (PK), firstName, lastName, email, phoneNumber, address)
 
-Order (Id (PK), date, customer_id (FK))
+Orders (Id (PK), date, customer_id (FK))
 
 OrderItem (Id (PK), quantity, order_id (FK), item_id (FK))
 
