@@ -5,7 +5,7 @@ use Webshop;
 create table Item(
     id int not null auto_increment primary key,
     name varchar(100) not null,
-    size varchar(10) not null,
+    size ENUM ('XS', 'S', 'M', 'L', 'XL', 'XXL') not null,
     price int not null,
     brand varchar(100) not null,
     stockQuantity int not null
@@ -28,7 +28,7 @@ create table Customer(
 
 create table Orders(
     id int not null auto_increment primary key,
-    date date not null,
+    date datetime not null,
     customer_id int not null,
     foreign key (customer_id) references Customer(id)
 );
