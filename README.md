@@ -8,4 +8,4 @@
 ## Images
 
 #### ER-Diagram
-![](images/ER-Diagram.png)
+![](images/ER-diagram.png)
