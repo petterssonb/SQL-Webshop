@@ -35,10 +35,10 @@ create table Customer(
 create table Orders(
     id int not null auto_increment primary key,
     date datetime not null,
-    customer_id int not null,
+    customer_id int null,
     created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    foreign key (customer_id) references Customer(id)
+    foreign key (customer_id) references Customer(id) on delete set null
 );
 
 create table OrderItem(
@@ -48,8 +48,8 @@ create table OrderItem(
     item_id int not null,
     created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    foreign key (order_id) references Orders(id),
-    foreign key (item_id) references Item(id)
+    foreign key (order_id) references Orders(id) on delete cascade,
+    foreign key (item_id) references Item(id) on delete cascade
 );
 
 create table ItemCategory(
@@ -58,8 +58,8 @@ create table ItemCategory(
     category_id int not null,
     created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    foreign key (item_id) references Item(id),
-    foreign key (category_id) references Category(id)
+    foreign key (item_id) references Item(id) on delete cascade,
+    foreign key (category_id) references Category(id) on delete cascade
 );
 
 insert into Item (name, size, price, brand, stockQuantity) values
