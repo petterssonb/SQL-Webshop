@@ -1,6 +1,8 @@
-## SQL Webshop
+# SQL Webshop
 
+## Description
 
+ - This is a simple webshop database.
 
 
 
