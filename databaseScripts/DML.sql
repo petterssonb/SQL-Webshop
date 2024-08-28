@@ -90,26 +90,5 @@ insert into ItemCategory (item_id, category_id) values
 
 select * from ItemCategory;
 
--- Fråga 1
-select distinct Customer.firstName as 'Customers'
-from Item left join OrderItem on Item.id = OrderItem.item_id
-inner join Orders on Orders.id = OrderItem.order_id
-right join Customer on Customer.id = Orders.customer_id
-where (Item.color = 'Black' and Item.size = 'M' and Item.brand = 'H&M');
-
--- Fråga 2
-select Category.name as 'Category', count(ItemCategory.id) as ItemCount from Category
-left join ItemCategory on Category.id = ItemCategory.category_id
-group by Category.name
-order by ItemCount desc;
-
--- Fråga 3
-select Customer.firstName as 'First name', Customer.lastName as 'Last name', sum(OrderItem.quantity * Item.price) as OrderValue
-from Customer inner join Orders on Customer.id = Orders.customer_id
-inner join OrderItem on Orders.id = OrderItem.order_id
-inner join Item on OrderItem.item_id = Item.id
-group by Customer.id, Customer.firstName, Customer.lastName
-order by OrderValue desc;
-
 -- Indexering
 create index customerLastName on Customer(lastName);
