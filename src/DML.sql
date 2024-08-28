@@ -104,7 +104,12 @@ group by Category.name
 order by ItemCount desc;
 
 -- Fråga 3
-
+select Customer.firstName as 'First name', Customer.lastName as 'Last name', sum(OrderItem.quantity * Item.price) as OrderValue
+from Customer inner join Orders on Customer.id = Orders.customer_id
+inner join OrderItem on Orders.id = OrderItem.order_id
+inner join Item on OrderItem.item_id = Item.id
+group by Customer.id, Customer.firstName, Customer.lastName
+order by OrderValue desc;
 
 -- Indexering
 create index customerLastName on Customer(lastName);
