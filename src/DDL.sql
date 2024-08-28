@@ -8,6 +8,7 @@ create table Item(
     size ENUM ('XS', 'S', 'M', 'L', 'XL', 'XXL') not null,
     price int not null,
     brand varchar(100) not null,
+    color varchar(100) not null,
     stockQuantity int not null,
     created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP

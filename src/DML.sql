@@ -1,12 +1,13 @@
 use Webshop;
 
-insert into Item (name, size, price, brand, stockQuantity) values
-('T-shirt', 'M', 199, 'H&M', 100),
-('Jeans', 'L', 499, 'Levis', 50),
-('Sweater', 'S', 299, 'Gant', 75),
-('Dress', 'M', 399, 'Zara', 25),
-('Shirt', 'XL', 249, 'Polo', 125),
-('Jacket', 'L', 699, 'Peak Performance', 30);
+insert into Item (name, size, price, brand, color, stockQuantity) values
+('T-shirt', 'M', 199, 'H&M', 'Black', 100),
+('T-shirt', 'L', 199, 'H&M', 'Black', 50),
+('Jeans', 'L', 499, 'Levis', 'Blue', 50),
+('Sweater', 'S', 299, 'Gant', 'Green', 75),
+('Dress', 'M', 399, 'Zara', 'Pink', 25),
+('Shirt', 'XL', 249, 'Polo', 'Yellow', 125),
+('Jacket', 'L', 699, 'Peak Performance', 'Red', 30);
 
 select * from Item;
 
@@ -49,18 +50,18 @@ insert into OrderItem (quantity, order_id, item_id) values
 (1, 2, 3),
 (4, 2, 4),
 (2, 3, 5),
-(3, 3, 6),
+(3, 3, 1),
 (1, 4, 1),
 (4, 4, 2),
-(2, 5, 3),
+(2, 5, 1),
 (3, 5, 4),
 (1, 6, 5),
 (4, 6, 6),
 (2, 7, 1),
-(3, 7, 2),
+(3, 7, 7),
 (1, 8, 3),
 (4, 8, 4),
-(2, 9, 5),
+(2, 9, 7),
 (3, 9, 6),
 (1, 10, 1),
 (4, 10, 2);
@@ -88,3 +89,22 @@ insert into ItemCategory (item_id, category_id) values
 (6, 3);
 
 select * from ItemCategory;
+
+-- Fråga 1
+select distinct Customer.firstName as 'Customers'
+from Item left join OrderItem on Item.id = OrderItem.item_id
+inner join Orders on Orders.id = OrderItem.order_id
+right join Customer on Customer.id = Orders.customer_id
+where (Item.color = 'Black' and Item.size = 'M' and Item.brand = 'H&M');
+
+-- Fråga 2
+select Category.name as 'Category', count(ItemCategory.id) as ItemCount from Category
+left join ItemCategory on Category.id = ItemCategory.category_id
+group by Category.name
+order by ItemCount desc;
+
+-- Fråga 3
+
+
+-- Indexering
+create index customerLastName on Customer(lastName);
