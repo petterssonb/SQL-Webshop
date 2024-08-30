@@ -94,9 +94,9 @@ public class Message{
     public void adminMenu(){
 
         while(true) {
-            System.out.println("1. Send question 1");
-            System.out.println("2. Send question 2");
-            System.out.println("3. Send question 3");
+            System.out.println("1. T-shirt customers, black, medium, H&M");
+            System.out.println("2. Category with item count");
+            System.out.println("3. Customer and their order value");
             int userInput = sc.nextInt();
 
             switch (userInput) {
