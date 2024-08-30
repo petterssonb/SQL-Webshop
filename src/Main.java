@@ -9,8 +9,6 @@ public class Main {
         Connection conn = con.getConnection();
         Message msg = new Message(conn);
         msg.adminMenu();
-
-
     }
 }
 
