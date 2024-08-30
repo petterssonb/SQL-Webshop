@@ -6,50 +6,48 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-public class Connect {
+public class Connect{
 
     private Connection conn;
 
     public void loadProperties(){
         Properties props = new Properties();
-        try(InputStream input = new FileInputStream("config.properties")) {
+        try(InputStream input = new FileInputStream("config.properties")){
+            if(input == null){
+                System.out.println("Unable to find properties file.");
+                return;
+            }
             props.load(input);
+            String url = props.getProperty("url");
+            String username = props.getProperty("user");
+            String password = props.getProperty("password");
+
+            if(url == null || username == null || password == null){
+                System.out.println("Unable to load properties.");
+                return;
+            }
+
+            if(!hasConnection(url, username, password)){
+                System.out.println("Unable to establish connection.");
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
-        }
-
-        String url = props.getProperty("db.url");
-        String username = props.getProperty("db.user");
-        String password = props.getProperty("db.password");
-
-        if(!hasConnection(url, username, password)){
-            System.out.println("Unable to establish connection.");
         }
     }
 
     public boolean hasConnection(String url, String username, String password) {
         try{
             conn = DriverManager.getConnection(url, username, password);
-            System.out.println("Connection to DB successful!");
             return true;
         } catch (SQLException e){
             System.out.println("Connection failed.");
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            return false;
         }
     }
 
-    public void closeConnection(){
-        if(conn != null){
-            try{
-                conn.close();
-                System.out.println("Connection closed.");
-            } catch (SQLException e){
-                throw new RuntimeException(e);
-            }
-        }
-    }
-
-    public Connection getConn() {
+    public Connection getConnection(){
         return conn;
     }
 }

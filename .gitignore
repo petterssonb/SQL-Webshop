@@ -3,6 +3,23 @@ out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 
+# Ignore all of .idea directory
+.idea/
+
+# Except for these files which may be shared
+!.idea/codeStyles/
+!.idea/inspectionProfiles/
+!.idea/misc.xml
+!.idea/modules.xml
+!.idea/runConfigurations/
+!.idea/vcs.xml
+
+# Ignore workspace-specific files
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries/
+.idea/libraries/
+
 ### Eclipse ###
 .apt_generated
 .classpath
