@@ -31,3 +31,5 @@ bin/
 .idea/sqldialects.xml
 
 config.properties
+
+*.iml
