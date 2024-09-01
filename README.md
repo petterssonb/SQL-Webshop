@@ -69,7 +69,13 @@ password=your_password
 
 ## License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+### Third-Party Licenses
+
+This project uses the Py4J library, which is licensed under the BSD 3-Clause License. 
+You can find the Py4J license in the [py4j-LICENSE](py4j-LICENSE) file.
+
 
 ## Acknowledgments
 - [IntelliJ IDEA](https://www.jetbrains.com/idea/) - for the development environment

@@ -1,14 +1,12 @@
-import java.sql.Connection;
+import py4j.GatewayServer;
 
 public class Main {
 
     public static void main(String[] args) {
-        Connect con = new Connect();
-        con.loadProperties();
-
-        Connection conn = con.getConnection();
-        Message msg = new Message(conn);
-        msg.adminMenu();
+        EntryPoint entry = new EntryPoint();
+        GatewayServer server = new GatewayServer(entry);
+        server.start();
+        System.out.println("Gateway Server Started");
     }
 }
 
