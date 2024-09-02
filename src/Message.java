@@ -27,6 +27,7 @@ public class Message{
                     case 3:
                         printQuery3(rs);
                         break;
+
                 }
             }catch(SQLException e){
                 throw new RuntimeException(e);
@@ -97,6 +98,7 @@ public class Message{
             System.out.println("1. T-shirt customers, black, medium, H&M");
             System.out.println("2. Category with item count");
             System.out.println("3. Customer and their order value");
+            System.out.println("4. Exit");
             int userInput = sc.nextInt();
 
             switch (userInput) {
@@ -108,6 +110,9 @@ public class Message{
                     break;
                 case 3:
                     query3();
+                    break;
+                case 4:
+                    System.exit(0);
                     break;
                 default:
                     System.out.println("Invalid input.");
