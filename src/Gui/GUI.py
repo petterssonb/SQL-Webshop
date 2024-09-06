@@ -18,13 +18,20 @@ def run_query(query_number):
             output = entry_point.query2()
         elif query_number == 3:
             output = entry_point.query3()
+        elif query_number == 4:
+            output = entry_point.query4()
+        elif query_number == 5:
+            output = entry_point.query5()
+        elif query_number == 6:
+            output = entry_point.query6()
         result_text.insert(ctk.END, output + '\n')
     except Exception as e:
         messagebox.showerror("Error", f"An error occurred: {e}")
     finally:
         update_status("Ready")
 
-def run_query_async(query_number):
+def run_query_async():
+    query_number = query_options.index(query_var.get()) + 1
     threading.Thread(target=run_query, args=(query_number,)).start()
 
 def update_status(text):
@@ -57,14 +64,21 @@ button_frame.grid(row=0, column=0, sticky="W", padx=10, pady=10)
 
 ctk.CTkLabel(button_frame, text="Select a Query:").grid(row=0, column=0, padx=5, pady=5)
 
-query_buttons = [
-    ("Query 1: Fetch User Data", 1),
-    ("Query 2: Generate Report", 2),
-    ("Query 3: System Status", 3)
+query_options = [
+    "Query 1: All customers who have ordered a black T-shirt in size M",
+    "Query 2: List categories with the number of products in each",
+    "Query 3: List customers and how much they have spent",
+    "Query 4: Fetch Customers",
+    "Query 5: Fetch Orders",
+    "Query 6: Fetch Products"
 ]
 
-for i, (text, num) in enumerate(query_buttons):
-    ctk.CTkButton(button_frame, text=text, command=lambda n=num: run_query_async(n)).grid(row=i+1, column=0, padx=5, pady=5, sticky="W")
+query_var = ctk.StringVar(value=query_options[0])
+query_combobox = ctk.CTkComboBox(button_frame, values=query_options, variable=query_var, width=450)
+query_combobox.grid(row=1, column=0, padx=5, pady=5)
+
+send_button = ctk.CTkButton(button_frame, text="Send Query", command=run_query_async)
+send_button.grid(row=1, column=1, padx=5, pady=5)
 
 result_frame = ctk.CTkFrame(root)
 result_frame.grid(row=1, column=0, sticky="nsew", padx=10, pady=10)

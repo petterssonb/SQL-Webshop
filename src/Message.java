@@ -2,6 +2,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 
 public class Message {
 
@@ -25,6 +26,15 @@ public class Message {
                         break;
                     case 3:
                         result.append(formatQuery3(rs));
+                        break;
+                    case 4:
+                        result.append(formatQuery4(rs));
+                        break;
+                    case 5:
+                        result.append(formatQuery5(rs));
+                        break;
+                    case 6:
+                        result.append(formatQuery6(rs));
                         break;
                 }
             } catch (SQLException e) {
@@ -66,6 +76,22 @@ public class Message {
         return executeQuery(sql, 3);
     }
 
+    public String query4() {
+        String sql = "select * from Customer";
+
+        return executeQuery(sql, 4);
+    }
+
+    public String query5() {
+        String sql = "select * from orders";
+        return executeQuery(sql, 5);
+    }
+
+    public String query6() {
+        String sql = "select * from Item";
+        return executeQuery(sql, 6);
+    }
+
     private String formatQuery1(ResultSet rs) throws SQLException {
         StringBuilder result = new StringBuilder();
         while (rs.next()) {
@@ -92,6 +118,45 @@ public class Message {
             String lastName = rs.getString("Last name");
             double orderValue = rs.getDouble("OrderValue");
             result.append(firstName).append(" ").append(lastName).append(": ").append(orderValue).append("\n");
+        }
+        return result.toString();
+    }
+
+    private String formatQuery4(ResultSet rs) throws SQLException{
+        StringBuilder result = new StringBuilder();
+        while(rs.next()){
+            int id = rs.getInt("id");
+            String firstName = rs.getString("firstName");
+            String lastName = rs.getString("lastName");
+            String email = rs.getString("email");
+            String phone = rs.getString("phoneNumber");
+            String address = rs.getString("address");
+            result.append(id).append(" ").append(firstName).append(" ").append(lastName).append(" ").append(email).append(" ").append(phone).append(" ").append(address).append("\n");
+        }
+        return result.toString();
+    }
+
+    private String formatQuery5(ResultSet rs) throws SQLException {
+        StringBuilder result = new StringBuilder();
+        while (rs.next()) {
+            int id = rs.getInt("id");
+            Timestamp date = rs.getTimestamp("date");
+            String customerId = rs.getString("customer_id");
+            result.append(id).append(" ").append(date).append(" ").append(customerId).append(" ").append("\n");
+        }
+        return result.toString();
+    }
+
+    private String formatQuery6(ResultSet rs) throws SQLException {
+        StringBuilder result = new StringBuilder();
+        while (rs.next()) {
+            int id = rs.getInt("id");
+            String name = rs.getString("name");
+            String color = rs.getString("color");
+            String size = rs.getString("size");
+            String brand = rs.getString("brand");
+            double price = rs.getDouble("price");
+            result.append(id).append(" ").append(name).append(" ").append(color).append(" ").append(size).append(" ").append(brand).append(" ").append(price).append("\n");
         }
         return result.toString();
     }
